@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Переводы!</title>
+</head>
+<body class="container">
+    <form method="POST">
+        {% csrf_token %}
+        <p>
+            <label>Сколько перевести</label><br>
+            <input type="number" name="money" />
+            <input type="text" name="unit" />
+        </р>
+        <p>
+            <label>Введите тип</label><br>
+            <input type="text" name="type" />
+        </р>
+        <p>
+            <label>Введите номер Вашего кошелька</label><br>
+            <input type="number" name="wallet_1" />
+        </р>
+        <p>
+            <label>Введите номер кошелька получателя</label><br>
+            <input type="number" name="wallet_2" />
+        </р>
+        <input type="submit" vаluе="Сохранить" >
+    </form>
+    {% if wallets.count > 0 %}
+
+    <h2>Сnисок моих кошельков</h2>
+    <table>
+        <tr><th>Id</th><th>Баланс (рубли)</th><th>Баланс (доллары)</th></tr>
+        {% for wal in wallets %}
+        {% if wal.id_person == request.user.id %}
+        <tr><td>{{ wal.id }}</td>
+            <td>{{ wal.balance_RUB }}</td>
+            <td>{{ wal.balance_USD }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </table>
+
+    <h2>Сnисок кошельков</h2>
+    <table>
+        <tr><th>Id</th><th>Баланс (рубли)</th><th>Баланс (доллары)</th></tr>
+        {% for wal in wallets %}
+        <tr><td>{{ wal.id }}</td>
+            <td>{{ wal.balance_RUB }}</td>
+            <td>{{ wal.balance_USD }}</td></tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    </body>
+</html>

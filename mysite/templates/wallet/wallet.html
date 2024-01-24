@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фopмa Django!</title>
+</head>
+<body class="container">
+    <h2>Карточка кошелька</h2>
+   <p>Номер кошелька: {{ wal.id }}</p>
+   <p>Баланс (рубли): {{ wal.balance_RUB }}</p>
+   <p>Баланс (доллары): {{ wal.balance_USD }}</p>
+    {% if operations.count > 0 %}
+    <h2>Сnисок операций</h2>
+    <table>
+
+        <tr><th>Номер</th><th>Тип</th><th>Сумма</th></tr>
+        {% for operation in operations %}
+        <tr><td>{{ operation.id }}</a></td>
+            <td>{{ operation.type }}</td>
+            <td>{{ operation.money }}</td></tr>
+</tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    </body>
+</html>

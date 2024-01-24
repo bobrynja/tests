@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фopмa Django!</title>
+</head>
+<body class="container">
+    <h2>Карточка пользователя</h2>
+   <p>Имя пользователя: {{ use.username }}</p>
+   <p>Имя: {{ use.first_name }}</p>
+   <p>Фамилия: {{ use.last_name }}</p>
+    {% if wallets.count > 0 %}
+    <h2>Сnисок кошельков</h2>
+    <table>
+
+        <tr><th>Номер</th><th>Рубли</th><th>Доллары</th></tr>
+        {% for wallet in wallets %}
+        <tr><td><a href="/wallets/?id={{ wallet.id }}">{{ wallet.id }}</a></td>
+            <td>{{ wallet.balance_RUB }}</td>
+            <td>{{ wallet.balance_USD }}</td></tr>
+</tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    </body>
+</html>

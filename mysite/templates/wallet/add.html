@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фopмa Django!</title>
+</head>
+<body class="container">
+    <form method="POST" action="create/">
+        {% csrf_token %}
+        <p>
+            <label>Введите баланс (в рублях)</label><br>
+            <input type="number" name="balance_RUB" />
+        </р>        
+        <p>
+            <label>Введите баланс (в долларах)</label><br>
+            <input type="number" name="balance_USD" />
+        </р>        
+        <input type="submit" vаluе="Сохранить" >
+    </form>
+    {% if wallets.count > 0 %}
+    <h2>Сnисок кошельков</h2>
+    <table>
+        <tr><th>Id</th><th>Баланс (рубли)</th><th>Баланс (доллары)</th></tr>
+        {% for wal in wallets %}
+        {% if wal.id_person == request.user.id %}
+        <tr><td>{{ wal.id }}</td>
+            <td>{{ wal.balance_RUB }}</td>
+            <td>{{ wal.balance_USD }}</td>
+        </tr>
+        {% endif %}
+        {% endfor %}
+        </table>
+    {% endif %}
+    </body>
+</html>

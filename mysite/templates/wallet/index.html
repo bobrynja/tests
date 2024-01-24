@@ -1,0 +1,38 @@
+<!DОСТУРЕ html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Фopмa Django!</title>
+</head>
+<body class="container">
+    <form method="POST" action="create/">
+        {% csrf_token %}
+        <p>
+            <lаbеl>Введите имя</lаbеl><br>
+            <input type="text" name="name" />
+        </р>
+        <p>
+            <lаbеl>Введите фамилию</lаbеl><br>
+            <input type="text" name="surname" />
+        </р>
+        <p>
+            <lаbеl>Введите номер телефона</lаbеl><br>
+            <input type="text" name="phone" />
+        </р>
+        
+        <input type="submit" vаluе="Сохранить" >
+    </form>
+    {% if people.count > 0 %}
+    <h2>Сnисок пользователей</h2>
+    <table>
+        <tr><th>Id</th><th>Имя</th><th>Фамилия</th><th>Номер телефона</th></tr>
+        {% for person in people %}
+        <tr><td>{{ person.id }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.surname }}</td></tr>
+            <td>{{ person.phone}}</td></tr>
+        {% endfor %}
+        </table>
+    {% endif %}
+    </body>
+</html>
