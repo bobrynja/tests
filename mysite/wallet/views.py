@@ -13,20 +13,11 @@ from django.forms import model_to_dict
 
 
 def index(request):
-    #igor = Person.objects.create(name="Игорь", surname="Белоусов", number="+79307456498")
-    #igor.save()
-    #people = Person.objects.all()
-    #people = UserProfile.objects.all()
     return render(request, "wallet/home.html")
 
 
 def create(request):
     if request.method == "POST":
-        #klient = Person()
-        #klient.name = request.POST.get("name")
-        #klient.surname = request.POST.get("surname")
-        #klient.phone = request.POST.get("phone")
-        #klient.save()
         pass
     return HttpResponseRedirect("/")
 
@@ -61,6 +52,7 @@ def transfer(request):
             if request.POST.get("unit") == 'RUB':
                 if transfer1.balance_RUB > float(request.POST.get("money")):
                     transfer1.balance_RUB = transfer1.balance_RUB - float(request.POST.get("money"))
+
                     transfer2.balance_RUB = transfer2.balance_RUB + float(request.POST.get("money"))
             elif request.POST.get("unit") == 'USD':
                 if transfer1.balance_USD > float(request.POST.get("money")):
